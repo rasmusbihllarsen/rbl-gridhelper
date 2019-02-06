@@ -17,6 +17,16 @@
 	border-right: 1px solid #ffffff;
 	min-width: 0px !important;
 	min-height: 0px !important;
+	display: flex;
+	padding: 15px;
+	align-items: center;
+	color: white;
+	font-weight: 700;
+	font-size: 16px;
+}
+
+#gridster ul li.filled {
+	background-color: #23a6bb;
 }
 
 #mobilegrid ul li {
@@ -40,40 +50,6 @@
 	z-index: 1;
 }
 
-
-/*
-#gridster ul li span.close, 
-#mobilegrid ul li span.close {
-	position: absolute;
-	z-index: 10;
-	width: 10px;
-	height: 10px;
-	right: 3px;
-	top: 3px;
-	background-color: red;
-	cursor: pointer;
-	opacity: 0;
-}
-#gridster ul li span.edit, 
-#mobilegrid ul li span.edit {
-	position: absolute;
-	z-index: 10;
-	width: 40px;
-	height: 40px;
-	right: 16px;
-	top: 3px;
-	background-color: green;
-	cursor: pointer;
-	opacity: 0;
-}
-#gridster ul li.gs-w:hover span.edit, 
-#gridster ul li.gs-w:hover span.close, 
-#mobilegrid ul li:hover span.edit, 
-#mobilegrid ul li:hover span.close {
-	opacity: 1;
-}
-*/
-
 #gridster .edit,
 #gridster .close,
 #mobilegrid .edit,
@@ -82,7 +58,7 @@
 	height: 40px;
 	background-position: center;
 	background-repeat: no-repeat;
-	border: 3px solid #fff;
+	border: 2px solid #fff;
 	box-sizing: border-box;
 	box-shadow: 0 1px 1px rgba(0, 0, 0, 0.4);
 	border-radius: 50%;
@@ -92,7 +68,6 @@
 	overflow: hidden;
 	cursor: pointer;
 	transition: background-color 200ms;
-	/*	opacity: 0;*/
 }
 
 #gridster .edit,
@@ -118,19 +93,6 @@
 #mobilegrid .close:hover {
 	background-color: #e68c8c;
 }
-
-/*
-#gridster .griditem:hover .edit,
-#gridster .griditem:hover .close,
-#mobilegrid .griditem:hover .edit,
-#mobilegrid .griditem:hover .close {
-	opacity: 1;
-}
-*/
-
-
-
-
 
 #gridster ul li div.action-overlay {
 	display: none;
@@ -299,17 +261,23 @@
 	display: block;
 }
 
-/*
-#gridster ul li[data-sizex="1"] {
-	width: 33.3333333333%;
+/*#gridster ul li[data-sizex="1"] {
+	width: 25%;
 }
+
 #gridster ul li[data-sizex="2"] {
-	width: 66.6666666666%;
+	width: 50%;
 }
+
 #gridster ul li[data-col="2"] {
-	left: 33.33333333333%;
+	left: 25%;
 }
+
 #gridster ul li[data-col="3"] {
-	left: 66.66666666666%;
+	left: 50%;
+}
+
+#gridster ul li[data-col="4"] {
+	left: 75%;
 }
 */
