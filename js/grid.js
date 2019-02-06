@@ -45,7 +45,7 @@ var gridwidget = '<li class="griditem"><span class="close"></span><span class="e
 
 function grid_serialize() {
 	var s = gridster.serialize(),
-	var js = JSON.stringify(s);
+		js = JSON.stringify(s);
 
 	jQuery('input[name="gridster"]').val(js);
 }
