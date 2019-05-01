@@ -1,14 +1,14 @@
-<?php
 if(!function_exists('lb_flush_rewrite_rules')){
 	// Flush rewrite rules
+<?php
 	add_action( 'after_switch_theme', 'lb_flush_rewrite_rules' );
-	function lb_flush_rewrite_rules() {
+	function gh_flush_rewrite_rules() {
 		flush_rewrite_rules();
 	}
 }
 
 add_action( 'init', 'lb_posttype_grid_items');
-function lb_posttype_grid_items() {
+function gh_posttype_grid_items() {
 	// Write these variables as all lowercase
 
 	// Post variables
@@ -59,4 +59,13 @@ function lb_posttype_grid_items() {
 			)
 		)
 	);
+}
+
+add_action('admin_menu' , 'gridhelper_page_settings');
+function gridhelper_page_settings() {
+	add_submenu_page('edit.php?post_type=grid_items', __('Settings', 'rbl-gridhelper'), __('Settings', 'rbl-gridhelper'), 'edit_posts', basename(__FILE__), 'gridhelper_settings_page');
+}
+
+function gridhelper_settings_page() {
+	echo 'Settings';
 }
