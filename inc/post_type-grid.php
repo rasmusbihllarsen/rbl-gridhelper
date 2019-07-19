@@ -1,13 +1,13 @@
 <?php
-if(!function_exists('lb_flush_rewrite_rules')){
+if(!function_exists('gh_flush_rewrite_rules')){
 	// Flush rewrite rules
-	add_action( 'after_switch_theme', 'lb_flush_rewrite_rules' );
+	add_action( 'after_switch_theme', 'gh_flush_rewrite_rules' );
 	function gh_flush_rewrite_rules() {
 		flush_rewrite_rules();
 	}
 }
 
-add_action( 'init', 'lb_posttype_grid_items');
+add_action( 'init', 'gh_posttype_grid_items');
 function gh_posttype_grid_items() {
 	// Write these variables as all lowercase
 
