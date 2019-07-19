@@ -1,6 +1,6 @@
+<?php
 if(!function_exists('lb_flush_rewrite_rules')){
 	// Flush rewrite rules
-<?php
 	add_action( 'after_switch_theme', 'lb_flush_rewrite_rules' );
 	function gh_flush_rewrite_rules() {
 		flush_rewrite_rules();
