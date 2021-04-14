@@ -432,6 +432,13 @@ function gridhelper($post_id = 0, $mobile = false){
 				}
 			}
 			
+			if($p->post_type != 'grid_items'){
+				$tile_link = get_permalink($p->ID);
+				
+				$tile_type = 'a href="'.$tile_link.'"';
+				$tile_type_end = 'a';
+			}
+			
 			$tiles .= '<'.$tile_type.' class="grid__item '.$classes.' '.$size;
 			
 			if(!$mobile){
@@ -452,7 +459,7 @@ function gridhelper($post_id = 0, $mobile = false){
 				}
 
 				$tile_styles .= 'background-image:url('.$img_url.');';
-			} else if( has_post_thumbnail($p->ID) && $p->post_type != 'grid'){
+			} else if( has_post_thumbnail($p->ID) && $p->post_type != 'grid_items'){
 				$thumb = wp_get_attachment_image_src(get_post_thumbnail_id($p->ID), $imgsize);
 
 				if(!empty($thumb)){
@@ -474,7 +481,7 @@ function gridhelper($post_id = 0, $mobile = false){
 				}
 
 				$tiles .= '<div class="grid__inner">';
-					if($p->post_type == 'grid'){
+					if($p->post_type == 'grid_items'){
 						if($yt_id != 'none'){
 							$tiles .= '<div class="video-icon"></div>';
 						}
