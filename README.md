@@ -16,4 +16,5 @@ Add the following in your `funcitons.php`-file:
 global $gridhelper_posttypes;
 $gridhelper_posttypes = array(
   'post'	=> 'Post'
-);```
+);
+```
