@@ -19,7 +19,7 @@ function gridhelper_frontpage_meta_boxes() {
 			'gridhelper',
 			'page',
 			'normal',
-			'high'
+			'default'
 		);
 
 		/*add_meta_box(
