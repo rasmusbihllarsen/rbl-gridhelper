@@ -4,5 +4,5 @@
 Makes it easy to create grids.
 
 ## How to show a grid
-Desktop-grid: ´´´gridhelper();´´´
-Mobile-grid: ´´´mobile_grid();´´´
+Desktop-grid: `gridhelper();`
+Mobile-grid: `mobile_grid();`
