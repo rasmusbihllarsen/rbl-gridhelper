@@ -3,7 +3,7 @@ Makes it easy to create grids.
 
 ## How to show a grid
 Desktop-grid: `gridhelper();`   
-Mobile-grid: `mobile_grid();`
+Mobile-grid (Virker ikke): `mobile_grid();`
 
 ## Actions
 `gridhelper_custom_content`   
