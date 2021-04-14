@@ -9,3 +9,11 @@ Mobile-grid: `mobile_grid();`
 `gridhelper_custom_content`   
 Has the post as a paramter.   
 Can be used to add content to `.grid__inner`.
+
+## Add posttypes
+Add the following in your `funcitons.php`-file:
+```php
+global $gridhelper_posttypes;
+$gridhelper_posttypes = array(
+  'post'	=> 'Post'
+);```
