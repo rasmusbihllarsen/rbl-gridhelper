@@ -5,7 +5,7 @@
  * Description: Adds a super awesome grid feature to pages
  * Author:      Rasmus Bihl Larsen
  * Author URI:  http://rasmusbihllarsen.com
- * Version:     1.1
+ * Version:     1.0
  * License:     DONOTSTEAL
  * Text Domain: rbl-gridhelper
  */
@@ -35,11 +35,17 @@ add_action('wp_enqueue_scripts', function($hook){
 add_action('wp_ajax_gridautocomplete', function() {
 	$search = $_POST['gs'];
 
-	$post_types = array(
+	global $gridhelper_posttypes;
+	$post_types = $gridhelper_posttypes;
+	$post_types['grid_items'] = __('Grid item', 'rbl-gridhelper');
+
+
+	/*$post_types = array(
 		'post'			=> __('Post', 'rbl-gridhelper'),
 		'page'			=> __('Page', 'rbl-gridhelper'),
+		'cases'			=> __('Case', 'rbl-gridhelper'),
 		'grid_items'	=> __('Grid item', 'rbl-gridhelper'),
-	);
+	);*/
 
 	$matches = preg_grep("/".$search."/i", $post_types);
 	$args = array(
@@ -209,7 +215,6 @@ function gridhelper($post_id = 0, $mobile = false){
 
 	$p = 11.7;
 	$h = $max * 250;
-//	$r = $h/$p;
 	$r = $max * 25;
 	$tiles = '';
 
@@ -268,18 +273,11 @@ function gridhelper($post_id = 0, $mobile = false){
 
 			if(count($post_types) == 0){
 				$post_types[] = 'post';
-			} elseif(in_array('interview',$post_types) && !in_array('post',$post_types)) {
-				$post_types[] = 'post';
-				$meta_query = array(array(
-					'key'			=> 'is_interview',
-					'value'		=> '1',
-					'compare'	=> '='
-				));
 			}
 
 			$args = array(
 				'posts_per_page'	=> 1,
-				'post_type'				=> $post_types
+				'post_type'			=> $post_types
 			);
 
 			if(!$mobile){
@@ -289,8 +287,8 @@ function gridhelper($post_id = 0, $mobile = false){
 			if(count($categories) != 0){
 				$args['tax_query'] = array(array(
 					'taxonomy'	=> 'category',
-					'field'			=> 'term_id',
-					'terms'			=> $categories
+					'field'		=> 'term_id',
+					'terms'		=> $categories
 				));
 			} elseif(is_category()) {
 				global $wp_query;
@@ -298,8 +296,8 @@ function gridhelper($post_id = 0, $mobile = false){
 
 				$args['tax_query'] = array(array(
 					'taxonomy'	=> 'category',
-					'field'			=> 'term_id',
-					'terms'			=> $term->term_id
+					'field'		=> 'term_id',
+					'terms'		=> $term->term_id
 				));
 			}
 
@@ -315,7 +313,7 @@ function gridhelper($post_id = 0, $mobile = false){
 			} else {
 				$args = array(
 					'posts_per_page'	=> 1,
-					'post_type'				=> 'post'
+					'post_type'			=> 'post'
 				);
 
 				if(!$mobile){ $args['post__not_in'] = $used_tiles; }
@@ -324,8 +322,8 @@ function gridhelper($post_id = 0, $mobile = false){
 					$term = $wp_query->get_queried_object();
 					$args['tax_query'] = array(array(
 						'taxonomy'	=> 'category',
-						'field'			=> 'term_id',
-						'terms'			=> $term->term_id
+						'field'		=> 'term_id',
+						'terms'		=> $term->term_id
 					));
 				}
 
@@ -431,7 +429,7 @@ function gridhelper($post_id = 0, $mobile = false){
 					$tile_type .= ' target="'.$gridhelper['link_target'].'"';
 				}
 			}
-			
+
 			if($p->post_type != 'grid_items'){
 				$tile_link = get_permalink($p->ID);
 				
@@ -549,7 +547,7 @@ function gridhelper($post_id = 0, $mobile = false){
 }
 
 function mobile_grid($post_id = 0){
-	grid($post_id, true);
+	gridhelper($post_id, true);
 }
 
 add_action('init', function(){
@@ -571,16 +569,8 @@ add_action('edit_category_form',function(){
 	echo '</div>';
 });
 
-
-
-//Echo grid:
-// gridhelper()
-
-
-//Echo mobile-grid:
-// mobile_grid()
-
-
+function gridhelper_custom_content_callback($post){
+	// Silence
+}
+add_action( 'gridhelper_custom_content', 'gridhelper_custom_content_callback', 10, 1 );
 ?>
-
-
