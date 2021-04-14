@@ -5,7 +5,7 @@
  * Description: Adds a super awesome grid feature to pages
  * Author:      Rasmus Bihl Larsen
  * Author URI:  http://rasmusbihllarsen.com
- * Version:     1.0
+ * Version:     1.1
  * License:     DONOTSTEAL
  * Text Domain: rbl-gridhelper
  */
@@ -478,6 +478,10 @@ function gridhelper($post_id = 0, $mobile = false){
 					$tiles .= '<div class="grid__item--overlay" style="background-color: '.$gridhelper['overlay_color'].'; opacity: 0.'.$gridhelper['overlay_opacity'].';"></div>';
 				}
 
+				ob_start();
+				do_action( 'gridhelper_before_inner', $p );
+				$tiles .= ob_get_clean();
+
 				$tiles .= '<div class="grid__inner">';
 					if($p->post_type == 'grid_items'){
 						if($yt_id != 'none'){
@@ -569,8 +573,4 @@ add_action('edit_category_form',function(){
 	echo '</div>';
 });
 
-function gridhelper_custom_content_callback($post){
-	// Silence
-}
-add_action( 'gridhelper_custom_content', 'gridhelper_custom_content_callback', 10, 1 );
 ?>
