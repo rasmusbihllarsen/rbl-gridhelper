@@ -15,6 +15,7 @@ Add the following in your `functions.php`-file:
 ```php
 global $gridhelper_posttypes;
 $gridhelper_posttypes = array(
+  //'posttype' => 'Shown Name of Post Type'
   'post'  => 'Post'
 );
 ```
