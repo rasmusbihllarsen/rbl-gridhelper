@@ -10,7 +10,6 @@
  * Text Domain: rbl-gridhelper
  */
 
-require('inc/updater.php');
 require('inc/post_type-grid.php');
 require('inc/metaboxes.php');
 require('inc/savedata.php');
