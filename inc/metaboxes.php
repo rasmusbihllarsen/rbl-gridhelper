@@ -8,7 +8,7 @@ function gridhelper_frontpage_meta_boxes() {
 	global $post;
 	$template_file = get_post_meta($post->ID,'_wp_page_template',true);
 
-	if($template_file == 'page-forside.php' || $post->post_name == 'forside' || $template_file == 'page-sektion.php'){
+	//if($template_file == 'page-forside.php' || $post->post_name == 'forside' || $template_file == 'page-sektion.php'){
 		if($template_file != 'page-sektion.php'){
 			remove_post_type_support('page','editor');
 		}
@@ -30,7 +30,7 @@ function gridhelper_frontpage_meta_boxes() {
 			'side',
 			'core'
 		);*/
-	}
+	//}
 }
 
 add_action('add_meta_boxes', 'gridhelper_item_meta_boxes');
