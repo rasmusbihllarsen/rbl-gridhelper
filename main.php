@@ -452,6 +452,14 @@ function gridhelper($post_id = 0, $mobile = false){
 				}
 
 				$tile_styles .= 'background-image:url('.$img_url.');';
+			} else if( has_post_thumbnail($p->ID) && $p->post_type != 'grid'){
+				$thumb = wp_get_attachment_image_src(get_post_thumbnail_id($p->ID), $imgsize);
+
+				if(!empty($thumb)){
+					$img_url = $thumb[0];
+				}
+
+				$tile_styles .= 'background-image:url('.$img_url.');';
 			}
 
 			$tiles .= '"'; //end classes
@@ -466,21 +474,27 @@ function gridhelper($post_id = 0, $mobile = false){
 				}
 
 				$tiles .= '<div class="grid__inner">';
-					if($yt_id != 'none'){
-						$tiles .= '<div class="video-icon"></div>';
-					}
+					if($p->post_type == 'grid'){
+						if($yt_id != 'none'){
+							$tiles .= '<div class="video-icon"></div>';
+						}
 
-					if(isset($gridhelper['show_pretitle']) && $gridhelper['pretitle']){
-						$tiles .= '<span class="gh_preheadline">'.$gridhelper['pretitle'].'</span>';
-					}
+						if(isset($gridhelper['show_pretitle']) && $gridhelper['pretitle']){
+							$tiles .= '<span class="gh_preheadline">'.$gridhelper['pretitle'].'</span>';
+						}
 
-					if(isset($gridhelper['show_title'])){
-						$title = (isset($gridhelper['title']) && !empty($gridhelper['title'])) ? nl2br($gridhelper['title']) : $p->post_title;
-						$tiles .= '<h2>'.apply_filters('the_title', $title, $p->ID).'</h2>';
-					}
-			
-					if(isset($gridhelper['show_content'])){
-						$tiles .= apply_filters('the_content', $p->post_content, $p->ID);
+						if(isset($gridhelper['show_title'])){
+							$title = (isset($gridhelper['title']) && !empty($gridhelper['title'])) ? nl2br($gridhelper['title']) : $p->post_title;
+							$tiles .= '<h2>'.apply_filters('the_title', $title, $p->ID).'</h2>';
+						}
+				
+						if(isset($gridhelper['show_content'])){
+							$tiles .= apply_filters('the_content', $p->post_content, $p->ID);
+						}
+					} else {
+						ob_start();
+						do_action( 'gridhelper_custom_content', $p );
+						$tiles .= ob_get_clean();
 					}
 
 				$tiles .= '</div>';
