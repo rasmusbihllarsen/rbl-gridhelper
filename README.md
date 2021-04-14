@@ -11,6 +11,7 @@ Has the post as a paramter.
 Can be used to add content to `.grid__inner`.
 
 `gridhelper_before_inner`   
+Has the post as a paramter.   
 Can be used to add content before `.grid__inner`.
 
 ## Add posttypes
