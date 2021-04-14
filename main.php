@@ -5,7 +5,7 @@
  * Description: Adds a super awesome grid feature to pages
  * Author:      Rasmus Bihl Larsen
  * Author URI:  http://rasmusbihllarsen.com
- * Version:     1.0
+ * Version:     1.1
  * License:     DONOTSTEAL
  * Text Domain: rbl-gridhelper
  */
