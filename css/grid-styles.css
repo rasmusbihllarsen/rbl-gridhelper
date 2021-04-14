@@ -1,11 +1,13 @@
 .grid {
+	display: flex;
+    flex-wrap: wrap;
 	max-width: 100vw;
 	position: relative;
 }
 
 .grid:after {
 	content: "";
-	display: block;
+	display: none;
 	padding-top: 50%;
 }
 
@@ -15,19 +17,15 @@
 	padding-top: 100%;
 }
 
-.grid .grid__item.tall:before {
-	padding-top: 200%;
-}
-
 .grid .grid__item {
-	background-color: #eee;
+	z-index: 2;
 	display: flex;
-	position: absolute;
+	position: relative;
+	background-color: #eee;
 	-webkit-background-size: cover;
 	background-size: cover;
 	background-repeat: no-repeat;
 	background-position: center;
-	z-index: 2;
 }
 
 .grid__inner {
@@ -36,28 +34,54 @@
 	z-index: 2;
 }
 
-.grid .col25 {
-	width: 25%;
-}
-
+.grid .col25,
 .grid .col50 {
-	width: 50%;
+	width: 100%;
 }
 
-.grid .col50:before {
-	padding-top: 50%;
+@media(min-width: 600px){
+	.grid .col50,
+	.grid .col25 {
+		width: 50%;
+	}
 }
 
-.grid .col2 {
-	left: 25%;
-}
+@media(min-width: 992px){
+	.grid:after {
+		display: block;
+	}
 
-.grid .col3 {
-	left: 50%;
-}
+	.grid .col2 {
+		left: 25%;
+	}
+	
+	.grid .col3 {
+		left: 50%;
+	}
+	
+	.grid .col4 {
+		left: 75%;
+	}
 
-.grid .col4 {
-	left: 75%;
+	.grid .grid__item {
+		position: absolute;
+	}
+
+	.grid .col25 {
+		width: 25%;
+	}
+
+	.grid .col50:before {
+		padding-top: 50%;
+	}
+
+	.grid .grid__item.tall:before {
+		padding-top: 200%;
+	}
+	
+	.grid .grid__item.col50.tall:before {
+		padding-top: 100%;
+	}
 }
 
 .grid .grid__item.vtop {
