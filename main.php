@@ -437,6 +437,8 @@ function gridhelper($post_id = 0, $mobile = false){
 				$tile_type_end = 'a';
 			}
 			
+			$classes .= ' post_type--'.$p->post_type;
+			
 			$tiles .= '<'.$tile_type.' class="grid__item '.$classes.' '.$size;
 			
 			if(!$mobile){
@@ -475,7 +477,8 @@ function gridhelper($post_id = 0, $mobile = false){
 
 			$tiles .= ' style="'.$tile_styles.'">';
 				if( isset($gridhelper['overlay_color']) && !empty($gridhelper['overlay_color']) && isset($gridhelper['overlay_opacity']) && !empty($gridhelper['overlay_opacity']) ){
-					$tiles .= '<div class="grid__item--overlay" style="background-color: '.$gridhelper['overlay_color'].'; opacity: 0.'.$gridhelper['overlay_opacity'].';"></div>';
+					$opacity = (int)$gridhelper['overlay_opacity'] / 100;
+					$tiles .= '<div class="grid__item--overlay" style="background-color: '.$gridhelper['overlay_color'].'; opacity: '.$opacity.';"></div>';
 				}
 
 				ob_start();
