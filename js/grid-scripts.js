@@ -1,5 +1,4 @@
 jQuery(document).ready(function(){
-	console.log('gridscripts');
 	jQuery('.gridhelper__youtube--close-button, .gridhelper__youtube--close-overlay').on('click', function(ev, el){
 		ev.preventDefault();
 		var $this = jQuery(this);
