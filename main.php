@@ -16,7 +16,7 @@ require('inc/savedata.php');
 
 
 add_action('admin_enqueue_scripts', function($hook){
-	if('post.php' != $hook && 'edit-tags.php' != $hook && 'term.php' != $hook){
+	if('post-new.php' != $hook && 'post.php' != $hook && 'edit-tags.php' != $hook && 'term.php' != $hook){
 		return;
 	}
 
