@@ -5,32 +5,32 @@
 
 add_action('add_meta_boxes', 'gridhelper_frontpage_meta_boxes');
 function gridhelper_frontpage_meta_boxes() {
-	global $post;
+	global $post, $gridhelper_showmeta;
 	$template_file = get_post_meta($post->ID,'_wp_page_template',true);
 
-	//if($template_file == 'page-forside.php' || $post->post_name == 'forside' || $template_file == 'page-sektion.php'){
-		if($template_file != 'page-sektion.php'){
-			remove_post_type_support('page','editor');
-		}
+	$gridhelper_showmeta[] = 'page';
 
-		add_meta_box(
-			'gridhelper',
-			__('Gridhelper', 'rbl-gridhelper'),
-			'gridhelper',
-			'page',
-			'normal',
-			'default'
-		);
+	if($template_file != 'page-sektion.php'){
+		remove_post_type_support('page','editor');
+	}
 
-		/*add_meta_box(
-			'mobilegrid',
-			'Mobil Grid',
-			'mobilegrid',
-			'page',
-			'side',
-			'core'
-		);*/
-	//}
+	add_meta_box(
+		'gridhelper',
+		__('Gridhelper', 'rbl-gridhelper'),
+		'gridhelper',
+		$gridhelper_showmeta,
+		'normal',
+		'default'
+	);
+
+	/*add_meta_box(
+		'mobilegrid',
+		'Mobil Grid',
+		'mobilegrid',
+		'page',
+		'side',
+		'core'
+	);*/
 }
 
 add_action('add_meta_boxes', 'gridhelper_item_meta_boxes');
@@ -78,13 +78,13 @@ function gridhelper_settings(){
 			</th>
 			<td>
 				<label for="gridhelper[show_title]">
-					<input type="checkbox" value="1" name="gridhelper[show_title]" <?php echo (isset($gridhelper['show_title']) && $gridhelper['show_title'] == 1) ? 'checked' : ''; ?>>
+					<input type="checkbox" value="1" name="gridhelper[show_title]" id="gridhelper[show_title]" <?php echo (isset($gridhelper['show_title']) && $gridhelper['show_title'] == 1) ? 'checked' : ''; ?>>
 					<span class="title"><?php _e('Show title', 'rbl-gridhelper'); ?></span>
 				</label>
 			</td>
 			<td>
 				<label for="gridhelper[show_content]">
-					<input type="checkbox" value="1" name="gridhelper[show_content]" <?php echo (isset($gridhelper['show_content']) && $gridhelper['show_content'] == 1) ? 'checked' : ''; ?>>
+					<input type="checkbox" value="1" name="gridhelper[show_content]" id="gridhelper[show_content]" <?php echo (isset($gridhelper['show_content']) && $gridhelper['show_content'] == 1) ? 'checked' : ''; ?>>
 					<span class="title"><?php _e('Show content', 'rbl-gridhelper'); ?></span>
 				</label>
 			</td>
@@ -93,13 +93,13 @@ function gridhelper_settings(){
 			<th></th>
 			<td>
 				<label for="gridhelper[show_pretitle]">
-					<input type="checkbox" value="1" name="gridhelper[show_pretitle]" <?php echo (isset($gridhelper['show_pretitle']) && $gridhelper['show_pretitle'] == 1) ? 'checked' : ''; ?>>
+					<input type="checkbox" value="1" name="gridhelper[show_pretitle]" id="gridhelper[show_pretitle]" <?php echo (isset($gridhelper['show_pretitle']) && $gridhelper['show_pretitle'] == 1) ? 'checked' : ''; ?>>
 					<span class="title"><?php _e('Show Pre-title', 'rbl-gridhelper'); ?></span>
 				</label>
 			</td>
 			<td>
 				<label for="gridhelper[show_video]">
-					<input type="checkbox" value="1" name="gridhelper[show_video]" <?php echo (isset($gridhelper['show_video']) && $gridhelper['show_video'] == 1) ? 'checked' : ''; ?>>
+					<input type="checkbox" value="1" name="gridhelper[show_video]" id="gridhelper[show_video]" <?php echo (isset($gridhelper['show_video']) && $gridhelper['show_video'] == 1) ? 'checked' : ''; ?>>
 					<span class="title"><?php _e('Show video', 'rbl-gridhelper'); ?></span>
 					<small><?php _e('This will override all text settings.', 'rbl-gridhelper'); ?></small>
 				</label>
@@ -111,7 +111,7 @@ function gridhelper_settings(){
 			</th>
 			<td colspan="2">
 				<label for="gridhelper[featured_bg]">
-					<input type="checkbox" value="1" name="gridhelper[featured_bg]" <?php echo (isset($gridhelper['featured_bg']) && $gridhelper['featured_bg'] == 1) ? 'checked' : ''; ?>>
+					<input type="checkbox" value="1" name="gridhelper[featured_bg]" id="gridhelper[featured_bg]" <?php echo (isset($gridhelper['featured_bg']) && $gridhelper['featured_bg'] == 1) ? 'checked' : ''; ?>>
 					<span class="title"><?php _e('Use featured image as background', 'rbl-gridhelper'); ?></span>
 				</label>
 			</td>
@@ -122,7 +122,7 @@ function gridhelper_settings(){
 			</th>
 			<td colspan="2">
 				<label for="gridhelper[inverted]">
-					<input type="checkbox" value="1" name="gridhelper[inverted]" <?php echo (isset($gridhelper['inverted']) && $gridhelper['inverted'] == 1) ? 'checked' : ''; ?>>
+					<input type="checkbox" value="1" name="gridhelper[inverted]" id="gridhelper[inverted]" <?php echo (isset($gridhelper['inverted']) && $gridhelper['inverted'] == 1) ? 'checked' : ''; ?>>
 					<span class="title"><?php _e('Make this grid-item different style', 'rbl-gridhelper'); ?></span>
 					<small><?php _e('This will add the class .inverted to the item-wrapper.', 'rbl-gridhelper'); ?></small>
 				</label>
