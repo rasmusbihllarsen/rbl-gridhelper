@@ -13,7 +13,7 @@
 require('inc/post_type-grid.php');
 require('inc/metaboxes.php');
 require('inc/savedata.php');
-
+require('inc/shortcode.php');
 
 add_action('admin_enqueue_scripts', function($hook){
 	if('post-new.php' != $hook && 'post.php' != $hook && 'edit-tags.php' != $hook && 'term.php' != $hook){
@@ -38,14 +38,6 @@ add_action('wp_ajax_gridautocomplete', function() {
 	global $gridhelper_posttypes;
 	$post_types = $gridhelper_posttypes;
 	$post_types['grid_items'] = __('Grid item', 'rbl-gridhelper');
-
-
-	/*$post_types = array(
-		'post'			=> __('Post', 'rbl-gridhelper'),
-		'page'			=> __('Page', 'rbl-gridhelper'),
-		'cases'			=> __('Case', 'rbl-gridhelper'),
-		'grid_items'	=> __('Grid item', 'rbl-gridhelper'),
-	);*/
 
 	$matches = preg_grep("/".$search."/i", $post_types);
 	$args = array(
