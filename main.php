@@ -98,7 +98,7 @@ add_action('edit_term',function($term_id){
 },3);
 //add_action('delete_term');
 
-function gridhelper($post_id = 0, $mobile = false){
+function gridhelper($post_id = 0, $mobile = false, $class = ''){
 	$grid = false;
 
 	if(is_array($mobile) && isset($mobile['id'])){
