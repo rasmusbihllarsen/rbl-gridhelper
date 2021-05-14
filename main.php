@@ -214,7 +214,7 @@ function gridhelper($post_id = 0, $mobile = false, $class = ''){
 		$tiles = '<style type="text/css"> #gridster:after { content:""; display:block; padding-top: 1px; } </style>';
 	} else if(!$mobile){
 		$tiles = '<style type="text/css"> .grid:after { padding-top: '.$r.'%; } </style>';
-		$tiles .= '<div class="grid">';
+		$tiles .= '<div class="grid '.$class.'">';
 	}
 
 	$has_yt_videos = false;
